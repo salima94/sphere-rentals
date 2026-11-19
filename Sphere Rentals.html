@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sphere Rentals | Mid-term and long-term rentals in DC, MD and VA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f6f4;--surface:#fff;--ink:#0d2f31;--muted:#4b6566;--line:#d3e0dc;--deep:#0f3d3e;--on-deep:#eaf5f1;--accent:#f2b632;--on-accent:#1c1604;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0a1b1c;--surface:#10292a;--ink:#e6f2ee;--muted:#9bb5b0;--line:#21403f;--deep:#06100f;--on-deep:#e6f2ee}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0a1b1c;--surface:#10292a;--ink:#e6f2ee;--muted:#9bb5b0;--line:#21403f;--deep:#06100f;--on-deep:#e6f2ee}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.01em}
+.logo i{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--accent) 0 22%,var(--deep) 24%);display:block}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:15px;color:var(--muted)}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font:inherit;font-weight:600;border:0;border-radius:999px;padding:13px 26px;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.06)}
+.btn.line{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:72px 0 88px}
+h1{font-size:clamp(40px,6.2vw,76px);line-height:1.02;letter-spacing:-.03em;margin:0 0 20px;font-weight:800}
+.hero p{max-width:46ch;color:var(--muted);font-size:19px;margin:0 0 28px}
+.search{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px;max-width:520px}
+.search input{flex:1;min-width:0;border:0;background:none;font:inherit;color:var(--ink);padding:0 16px}
+.search input:focus-visible{outline:none}
+.search:focus-within{outline:3px solid var(--accent)}
+.orb{position:relative;aspect-ratio:1;max-width:440px;width:100%;justify-self:center}
+.orb span{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--line)}
+.orb span:nth-child(2){inset:9%}.orb span:nth-child(3){inset:18%}
+.orb b{position:absolute;inset:27%;border-radius:50%;background:radial-gradient(circle at 32% 28%,#2f8f87,var(--deep) 68%);box-shadow:0 30px 60px -20px rgba(15,61,62,.5)}
+.orb em{position:absolute;width:16%;aspect-ratio:1;border-radius:50%;background:var(--accent);top:7%;right:19%;animation:orbit 14s linear infinite;transform-origin:-90% 340%}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.orb em{animation:none}}
+section{padding:80px 0}
+h2{font-size:clamp(30px,4.2vw,48px);line-height:1.08;letter-spacing:-.025em;margin:0 0 16px;font-weight:800;max-width:20ch}
+.lead{color:var(--muted);max-width:56ch;margin:0 0 40px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--ink)}
+.pillars div{padding:28px 28px 8px 0}
+.pillars div+div{padding-left:28px;border-left:1px solid var(--line)}
+.pillars h3{margin:0 0 8px;font-size:22px}
+.pillars p{margin:0;color:var(--muted)}
+.markets{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.regions{display:grid;gap:0;border-top:1.5px solid var(--ink)}
+.regions div{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.regions strong{font-size:22px}
+.regions span{color:var(--muted);text-align:right}
+.stays{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.listings{border:1px solid var(--line);border-radius:24px;background:var(--surface);overflow:hidden}
+.listings iframe{display:block;width:100%;height:1240px;border:0}
+.listings .empty{padding:40px;color:var(--muted);margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:24px}
+.card{display:block;text-decoration:none;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg)}
+.card:hover{border-color:var(--ink)}
+.card .ph{height:150px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 25%,#2f8f87,var(--deep) 70%);color:var(--on-deep);font-weight:600;letter-spacing:.02em}
+.card img.ph{display:block;width:100%;height:190px;object-fit:cover}
+.card .cb{padding:18px 20px 20px}
+.card strong{font-size:26px;letter-spacing:-.02em}
+.card strong span{font-size:15px;font-weight:400;color:var(--muted)}
+.card h3{margin:6px 0 4px;font-size:18px}
+.card p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.card b{font-weight:600;font-size:15px}
+.stays b{border:1.5px solid var(--ink);border-radius:999px;padding:8px 18px;font-weight:600;font-size:15px}
+.band{background:var(--deep);color:var(--on-deep)}
+.band h2{max-width:22ch}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px;max-width:640px}
+.stats strong{display:block;font-size:clamp(36px,5vw,58px);line-height:1;letter-spacing:-.03em;color:var(--accent)}
+.stats span{display:block;margin-top:10px;font-size:15px;opacity:.85;max-width:22ch}
+.quote{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+blockquote{margin:0;font-size:clamp(22px,2.6vw,30px);line-height:1.3;letter-spacing:-.01em;font-weight:600}
+cite{display:block;margin-top:20px;font-style:normal;color:var(--muted);font-size:15px;font-weight:400}
+.owner{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:48px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.owner form{display:grid;gap:12px}
+label{font-size:14px;color:var(--muted)}
+.owner input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:4px}
+.msg{min-height:1.4em;margin:0;font-size:15px;color:var(--muted)}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;line-height:1;color:var(--muted);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p,details ul{color:var(--muted);margin:12px 0 0;max-width:68ch}
+.faq{max-width:820px}
+footer{background:var(--deep);color:var(--on-deep);padding:56px 0 40px;font-size:15px}
+.fgrid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+footer a{text-decoration:none;opacity:.85;display:block;margin-bottom:8px}
+footer a:hover{opacity:1;text-decoration:underline}
+footer .logo{color:var(--on-deep)}
+.fine{margin-top:36px;opacity:.65;font-size:13px}
+.portal{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.portal .pc{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px}
+.portal .pc:hover{border-color:var(--ink)}
+.portal h3{margin:0 0 8px;font-size:21px}.portal p{margin:0 0 16px;color:var(--muted)}.portal b{font-weight:600}
+[hidden]{display:none!important}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);border-top:1.5px solid var(--ink)}
+.svc div{padding:26px 28px 26px 0;border-bottom:1px solid var(--line)}
+.svc div:not(:nth-child(3n+1)){padding-left:28px;border-left:1px solid var(--line)}
+.svc h3{margin:0 0 8px;font-size:21px}.svc p{margin:0;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:32px}
+.two h3{margin:0 0 8px;font-size:26px;letter-spacing:-.02em}.two p{color:var(--muted);margin:0 0 14px}
+.two ul{margin:0;padding-left:20px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;counter-reset:s}
+.steps div::before{counter-increment:s;content:"0" counter(s);display:block;font-size:40px;font-weight:800;color:var(--accent);letter-spacing:-.03em}
+.steps h3{margin:8px 0}.steps p{margin:0;opacity:.85;font-size:15px}
+.ocard{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:32px}
+.ocard h3{margin:0 0 14px;font-size:20px}.ocard ul{margin:0;padding:0}
+.ocard li{padding:11px 0;border-top:1px solid var(--line);list-style:none}
+.ocard li::before{content:"\2713";font-weight:800;margin-right:10px}
+.owner select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:4px}
+@media (max-width:860px){
+.hero,.quote,.owner,.markets{grid-template-columns:1fr}
+.hero{padding:48px 0 56px}.orb{max-width:300px;order:-1}
+.pillars,.svc,.two,.steps,.portal{grid-template-columns:1fr}.svc div,.svc div:not(:nth-child(3n+1)){padding:22px 0;border-left:0}
+.pillars div,.pillars div+div{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+.stats{grid-template-columns:1fr 1fr}
+.owner{padding:28px}section{padding:56px 0}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="logo" href="#top"><i></i>Sphere Rentals</a>
+<nav aria-label="Main"><ul>
+<li><a href="#top" aria-current="page">For residents</a></li>
+<li><a href="#owners">For owners</a></li>
+<li><a href="#rentals">Available rentals</a></li>
+<li><a href="#faq">Resources</a></li>
+<li><a id="pay" data-portal href="https://renter.turbotenant.com/auth/login">Resident login</a></li>
+</ul></nav>
+<a class="btn line" href="#owner-contact">Check my property</a>
+</div>
+</header>
+
+<main id="top">
+<div id="v-res">
+<div class="wrap hero">
+<div>
+<h1>Find your next home in the DMV.</h1>
+<p>Browse mid-term and long-term rentals across DC, Maryland and Virginia, apply online and pay rent from your phone.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#rentals">Browse rentals</a><a class="btn line" href="#how">How to apply</a><a class="btn line" data-portal href="https://renter.turbotenant.com/auth/login">Resident login</a></div>
+</div>
+<div class="orb" aria-hidden="true"><span></span><span></span><span></span><b></b><em></em></div>
+</div>
+
+<section id="homes" style="padding-top:24px">
+<div class="wrap">
+<h2>Homes we’d want to live in ourselves.</h2>
+<p class="lead">Every Sphere home is inspected, repaired and prepared before you see it, and looked after by a dedicated team of professionals.</p>
+<div class="pillars">
+<div><h3>Carefully chosen homes</h3><p>We inspect each property top to bottom and fix what needs fixing before a resident moves in.</p></div>
+<div><h3>A resident team that answers</h3><p>From your first tour to your move-in day, one dedicated team knows your questions and your timeline.</p></div>
+<div><h3>Maintenance around the clock</h3><p>Submit a request online and our maintenance team will respond promptly, with urgent issues handled first.</p></div>
+</div>
+</div>
+</section>
+
+<section id="rentals" style="padding-top:0">
+<div class="wrap">
+<h2>Available rentals</h2>
+<p class="lead">Browse our current mid-term and long-term homes. Select a home to see photos, details and the application.</p>
+<div class="listings" id="listings"><p class="empty">Our current listings will appear here soon.</p></div>
+</div>
+</section>
+
+<section id="how">
+<div class="wrap">
+<h2>Apply in three steps.</h2>
+<p class="lead">Applications, screening and rent payments run through TurboTenant, so everything happens online.</p>
+<div class="pillars">
+<div><h3>1. Choose a home and schedule a showing</h3><p>Browse available rentals above, open a listing to see photos, rent and details, and schedule a showing.</p></div>
+<div><h3>2. Apply online</h3><p>Apply from your phone or computer on the listing page. The applicant covers the screening fee.</p></div>
+<div><h3>3. Move in and pay online</h3><p>Sign your lease electronically, then pay rent and report maintenance issues from your renter account.</p></div>
+</div>
+</div>
+</section>
+
+<section id="portal" style="padding-top:0">
+<div class="wrap">
+<h2>Resident login.</h2>
+<p class="lead">Already live in a Sphere home? Sign in to your TurboTenant renter account to take care of everything online.</p>
+<div class="portal">
+<a class="pc" data-portal href="https://renter.turbotenant.com/auth/login"><h3>Pay rent</h3><p>Pay rent, fees and deposits by bank transfer or card, and see your payment history.</p><b>Log in →</b></a>
+<a class="pc" data-portal href="https://renter.turbotenant.com/auth/login"><h3>Request maintenance</h3><p>Submit a repair request from your phone or computer.</p><b>Log in →</b></a>
+<a class="pc" data-portal href="https://renter.turbotenant.com/auth/login"><h3>Messages and documents</h3><p>Message our team and find your lease and other documents in one place.</p><b>Log in →</b></a>
+</div>
+<p class="msg" style="margin-top:16px">Trouble signing in? Use Forgot your password on the login page, check your spam folder for your welcome email, or use the TurboTenant mobile app on iOS or Android.</p>
+</div>
+</section>
+
+<section id="markets">
+<div class="wrap markets">
+<div>
+<h2>Mid-term and long-term rentals across the DMV.</h2>
+<p class="lead">Sphere manages mid-term and long-term rentals in the DC, Maryland and Virginia metro area. Whether you need a few months or a few years, we have a home and a team to match.</p>
+<div class="stays"><b>Mid-term stays</b><b>Long-term leases</b></div>
+</div>
+<div class="regions">
+<div><strong>Washington, DC</strong><span>City neighborhoods</span></div>
+<div><strong>Maryland</strong><span>DC suburbs and beyond</span></div>
+<div><strong>Virginia</strong><span>Northern Virginia</span></div>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<h2>You’re a resident of your home, not a tenant in a rental.</h2>
+<div class="stats">
+<div><strong>90%</strong><span>Renew or move to another Sphere home</span></div>
+<div><strong>100%</strong><span>Satisfaction with our maintenance team</span></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap quote">
+<h2>Ask the people who already live here.</h2>
+<blockquote>“One of the best property management firms I have ever worked with!”
+<cite>Allan, current resident</cite></blockquote>
+</div>
+</section>
+
+<section id="faq" style="padding-top:0">
+<div class="wrap">
+<h2>Common questions</h2>
+<div class="faq" style="margin-top:32px">
+<details><summary>How do I apply for a home?</summary>
+<p>Open any home in the Available rentals section and select Apply on the listing page. You can apply from your phone or computer, and screening is handled online through TurboTenant.</p></details>
+<details><summary>How do you screen applicants?</summary>
+<ul><li>Identity verification</li><li>Landlord references</li><li>Credit check</li><li>Income and employer verification</li><li>Eviction and background checks</li></ul></details>
+<details><summary>How do I pay rent and request repairs?</summary>
+<p>Log in to your TurboTenant renter account from the Resident login button to pay rent, fees and deposits online and to submit maintenance requests.</p></details>
+<details><summary>What if something breaks at night?</summary>
+<p>Our maintenance team takes urgent requests 24 hours a day, every day of the year.</p></details>
+<details><summary>What happens when my lease is ending?</summary>
+<p>We reach out well ahead of time with renewal options, and if you need a different size or neighborhood, we’ll help you move within the Sphere network.</p></details>
+</div>
+</div>
+</section>
+</div>
+<div id="v-own" hidden>
+<div class="wrap hero">
+<div>
+<h1>Hands-off ownership. Happier residents.</h1>
+<p>Sphere Rentals manages mid-term and long-term rentals across DC, Maryland and Virginia, so you earn steady income without the day-to-day work.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#owner-contact">Get a free rental analysis</a><a class="btn line" href="#owner-services">See our services</a></div>
+</div>
+<div class="ocard"><h3>Your property, handled.</h3><ul><li>Marketing, showings and screening</li><li>Leases and move-in prep</li><li>Rent collection and reporting</li><li>Maintenance and repairs</li><li>Compliance support</li></ul></div>
+</div>
+
+<section id="owner-services" style="padding-top:24px">
+<div class="wrap">
+<h2>Full-service management, start to finish.</h2>
+<p class="lead">Everything it takes to run a rental well, handled by one team.</p>
+<div class="svc">
+<div><h3>Tenant placement</h3><p>Professional marketing, showings and thorough applicant screening to find qualified residents.</p></div>
+<div><h3>Leasing</h3><p>Compliant lease agreements, e-signatures and a smooth move-in for every resident.</p></div>
+<div><h3>Rent collection</h3><p>Online rent payments, late-fee handling and clear records of every transaction.</p></div>
+<div><h3>Maintenance</h3><p>Repair requests, vendor coordination and regular upkeep to protect your property’s value.</p></div>
+<div><h3>Compliance</h3><p>Help staying on top of local licensing, inspection and leasing requirements.</p></div>
+<div><h3>Owner reporting</h3><p>Regular statements and updates so you always know how your property is performing.</p></div>
+</div>
+</div>
+</section>
+
+<section style="padding-top:0">
+<div class="wrap">
+<h2>Two ways to rent your home.</h2>
+<p class="lead">We manage both, and can help you decide which fits your property.</p>
+<div class="two">
+<article><h3>Mid-term rentals</h3><p>Flexible stays for traveling professionals, relocating families and people between homes.</p><ul><li>Furnished or unfurnished options</li><li>Shorter, flexible lease terms</li><li>Often higher monthly rent</li></ul></article>
+<article><h3>Long-term rentals</h3><p>Traditional leases for residents who want to settle in.</p><ul><li>Steady, predictable income</li><li>Fewer turnovers</li><li>Lower day-to-day effort</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<h2>Getting started is simple.</h2>
+<div class="steps">
+<div><h3>Free analysis</h3><p>Tell us about your property and we’ll recommend a rent and a rental strategy.</p></div>
+<div><h3>Onboarding</h3><p>We sign the agreement, inspect the home and prepare it for residents.</p></div>
+<div><h3>List and lease</h3><p>We market the home, screen applicants and sign the lease.</p></div>
+<div><h3>We manage</h3><p>We handle rent, repairs and residents, and you get regular reports.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Owner questions</h2>
+<div class="faq" style="margin-top:32px">
+<details><summary>What types of properties do you manage?</summary><p>Single-family homes, condos, townhomes and small apartment buildings across DC, Maryland and Virginia.</p></details>
+<details><summary>What does management cost?</summary><p>Pricing depends on the property and the services you need. Request a free analysis and we’ll send you a clear quote.</p></details>
+<details><summary>How do I receive rent and reports?</summary><p>You’ll receive regular statements and rent payments, with a record of income and expenses for your property.</p></details>
+<details><summary>Do you handle furnished mid-term rentals?</summary><p>Yes. We can manage furnished and unfurnished homes, and help you choose between mid-term and long-term.</p></details>
+</div>
+</div>
+</section>
+
+<section id="owner-contact" style="padding-top:0">
+<div class="wrap">
+<div class="owner">
+<div><h2>Get a free rental analysis.</h2><p class="lead" style="margin:0">Tell us about your property and a Sphere advisor will follow up with a recommended rent and management plan.</p></div>
+<div><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdfb2KlM_f0Zc27czaOUnh-HY1SzZecqDCn36EUVo5dOAVw1g/viewform" target="_blank" rel="noopener">Request my analysis</a><p class="msg" style="margin-top:12px">Opens a short form for your name, email, phone number and property address.</p></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="#top"><i></i>Sphere Rentals</a><p style="opacity:.8;max-width:30ch">Where residents experience home.</p></div>
+<div><a href="#top">For residents</a><a href="#owners">For owners</a><a href="#homes">Available rentals</a></div>
+<div><a href="#faq">Resident portal</a><a href="#owners">Owner portal</a><a href="#faq">Careers</a></div>
+</div>
+<p class="fine">© 2026 Sphere Rentals. Sample content for design purposes.</p>
+</div>
+</footer>
+
+<script>
+/* TurboTenant setup: paste the iframe src from your TurboTenant embed code, and your renter/resident login link */
+var TT_LISTINGS_URL='https://rental.turbotenant.com/embedpropertylist.html#/QmFzaWNVc2VyUHJvZmlsZToxMzE0NDM3';
+var TT_RESIDENT_PORTAL_URL='https://renter.turbotenant.com/auth/login';
+if(TT_LISTINGS_URL){document.getElementById('listings').innerHTML='<div class="cards"><a class="card" href="https://rental.turbotenant.com/p/1211-simms-pl-ne-washington-dc-unit-1/c8f9e5eb-eed9-4ffa-b063-8941d33d3133" target="_blank" rel="noopener"><img class="ph" src="data:image/jpeg;base64,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" alt="Dining area at 1211 Simms Pl NE, Unit 1" loading="lazy"><div class="cb"><strong>$2,500<span>/mo</span></strong><h3>1211 Simms Pl NE, Unit 1</h3><p>Washington, DC 20002 · 750 sq ft</p><b>View and apply →</b></div></a></div><p class="empty" style="text-align:center;padding:8px 24px 36px"><a class="btn line" href="'+TT_LISTINGS_URL+'" target="_blank" rel="noopener">View all available rentals</a></p>';}
+document.querySelectorAll('[data-portal]').forEach(function(a){a.href=TT_RESIDENT_PORTAL_URL;a.target='_blank';a.rel='noopener';});
+var RES_TITLE=document.title;
+function route(){var h=location.hash,own=h==='#owners'||h.indexOf('#owner-')===0;
+document.getElementById('v-res').hidden=own;document.getElementById('v-own').hidden=!own;
+document.title=own?'Sphere Rentals | For owners':RES_TITLE;
+var a=document.querySelector('nav a[href="#top"]'),b=document.querySelector('nav a[href="#owners"]');
+if(own){a.removeAttribute('aria-current');b.setAttribute('aria-current','page')}else{b.removeAttribute('aria-current');a.setAttribute('aria-current','page')}
+var t=h.length>1&&h!=='#owners'&&h!=='#top'?document.getElementById(h.slice(1)):null;
+if(t)t.scrollIntoView();else window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
