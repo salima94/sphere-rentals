@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sphere Rentals | Mid-term and long-term rentals in DC, MD and VA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f6f4;--surface:#fff;--ink:#0d2f31;--muted:#4b6566;--line:#d3e0dc;--deep:#0f3d3e;--on-deep:#eaf5f1;--accent:#f2b632;--on-accent:#1c1604;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0a1b1c;--surface:#10292a;--ink:#e6f2ee;--muted:#9bb5b0;--line:#21403f;--deep:#06100f;--on-deep:#e6f2ee}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0a1b1c;--surface:#10292a;--ink:#e6f2ee;--muted:#9bb5b0;--line:#21403f;--deep:#06100f;--on-deep:#e6f2ee}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.01em}
+.logo i{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--accent) 0 22%,var(--deep) 24%);display:block}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:15px;color:var(--muted)}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font:inherit;font-weight:600;border:0;border-radius:999px;padding:13px 26px;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.06)}
+.btn.line{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:72px 0 88px}
+h1{font-size:clamp(40px,6.2vw,76px);line-height:1.02;letter-spacing:-.03em;margin:0 0 20px;font-weight:800}
+.hero p{max-width:46ch;color:var(--muted);font-size:19px;margin:0 0 28px}
+.search{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px;max-width:520px}
+.search input{flex:1;min-width:0;border:0;background:none;font:inherit;color:var(--ink);padding:0 16px}
+.search input:focus-visible{outline:none}
+.search:focus-within{outline:3px solid var(--accent)}
+.orb{position:relative;aspect-ratio:1;max-width:440px;width:100%;justify-self:center}
+.orb span{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--line)}
+.orb span:nth-child(2){inset:9%}.orb span:nth-child(3){inset:18%}
+.orb b{position:absolute;inset:27%;border-radius:50%;background:radial-gradient(circle at 32% 28%,#2f8f87,var(--deep) 68%);box-shadow:0 30px 60px -20px
